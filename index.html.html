@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gokulprasath M | ECE Student Portfolio</title>
+<meta name="description" content="Portfolio of Gokulprasath M, a second-year Electronics and Communication Engineering student exploring electronics, embedded systems and programming.">
+<meta property="og:title" content="Gokulprasath M | ECE Student Portfolio">
+<meta property="og:description" content="Second-year ECE student building practical skills in electronics and programming.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#e0241f;
+  --black:#0a0a0a;
+  --ink:#0a0a0a;
+  --white:#f5f2ee;
+  --pad:clamp(16px,3vw,32px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter Tight','Helvetica Neue',Arial,sans-serif;background:var(--black);color:var(--white);line-height:1.2;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--white);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--white);color:var(--ink);padding:8px 12px;z-index:200}
+.skip:focus{left:8px}
+
+/* sections */
+section{padding:var(--pad)}
+.red{background:var(--red);color:var(--ink)}
+.dark{background:var(--black);color:var(--red)}
+.label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.h-xl{font-weight:800;text-transform:uppercase;letter-spacing:-.04em;line-height:.9;font-size:clamp(34px,6.4vw,92px)}
+.h-md{font-weight:800;text-transform:uppercase;letter-spacing:-.03em;line-height:.95;font-size:clamp(26px,4.2vw,60px)}
+.body{font-size:clamp(13px,1.15vw,16px);font-weight:500;text-transform:uppercase;line-height:1.15;max-width:640px}
+.mega{font-weight:900;text-transform:uppercase;letter-spacing:-.06em;line-height:.8;font-size:clamp(70px,19vw,290px);white-space:nowrap}
+
+/* nav */
+header{position:fixed;inset:0 0 auto 0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px var(--pad);mix-blend-mode:normal}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.03em;text-transform:uppercase;color:var(--ink)}
+.menu-btn{background:none;border:0;font:inherit;font-weight:800;font-size:18px;text-transform:uppercase;letter-spacing:-.02em;color:var(--ink);cursor:pointer;display:flex;gap:10px;align-items:center}
+.menu-btn i{display:block;width:22px;height:8px;border-top:2px solid currentColor;border-bottom:2px solid currentColor}
+header.on-dark .logo,header.on-dark .menu-btn{color:var(--red)}
+.overlay{position:fixed;inset:0;background:var(--black);z-index:150;display:none;flex-direction:column;justify-content:center;padding:var(--pad)}
+.overlay.open{display:flex}
+.overlay a{font-size:clamp(40px,9vw,120px);font-weight:900;text-transform:uppercase;letter-spacing:-.05em;line-height:.95;color:var(--red);transition:color .2s,transform .2s}
+.overlay a:hover{color:var(--white);transform:translateX(12px)}
+.close{position:absolute;top:18px;right:var(--pad);background:none;border:0;color:var(--white);font:inherit;font-weight:800;text-transform:uppercase;font-size:18px;cursor:pointer}
+
+/* buttons */
+.btn{display:inline-flex;align-items:stretch;background:var(--ink);color:var(--red);font-weight:700;font-size:13px;text-transform:uppercase;border:0;cursor:pointer;font-family:inherit;transition:transform .2s,background .2s}
+.btn span{padding:12px 14px}
+.btn b{display:grid;place-items:center;width:42px;border:2px solid var(--red);margin:3px;font-size:14px}
+.btn:hover{transform:translate(3px,-3px);background:#000}
+.btn.light{background:var(--red);color:var(--ink)}
+.btn.light b{border-color:var(--ink)}
+
+/* hero */
+#home{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding-top:90px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(200px,26%) 1fr;gap:clamp(20px,4vw,60px);align-items:start}
+.photo{aspect-ratio:3/4;background:#111;position:relative;overflow:hidden;border:0}
+.photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(.2) contrast(1.05)}
+.photo .ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:var(--red);font-weight:700;text-transform:uppercase;font-size:12px;padding:16px}
+.cap{margin-top:10px;font-size:12px;font-weight:700;text-transform:uppercase;max-width:230px}
+.hero-copy{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:start;padding-top:clamp(0px,3vw,40px)}
+.hero-copy .label{max-width:120px;text-align:right}
+.hero-copy .label.r{text-align:left}
+.hero-copy .btn{margin-top:24px}
+.hero-mega{margin-top:clamp(20px,4vw,50px);color:var(--ink)}
+@media(max-width:820px){
+  .hero-grid{grid-template-columns:1fr}
+  .photo{max-width:260px}
+  .hero-copy{grid-template-columns:1fr}
+  .hero-copy .label,.hero-copy .label.r{text-align:left;max-width:none}
+}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1.6fr;gap:clamp(24px,5vw,80px);min-height:80vh;align-content:space-between}
+.stat{border-top:2px solid #3a0f0d;padding-top:18px}
+.stat .n{font-size:clamp(48px,7vw,100px);font-weight:800;letter-spacing:-.05em;line-height:.9}
+.about-r{display:grid;gap:22px;align-content:start}
+.about-r .row{display:grid;grid-template-columns:90px 1fr;gap:16px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#3a0f0d;margin-top:10px}
+.cards div{background:var(--black);padding:16px}
+.cards .label{display:block;margin-bottom:8px;opacity:.7}
+.cards p{font-weight:700;text-transform:uppercase;font-size:14px}
+.about .mega{grid-column:1/-1;font-size:clamp(60px,15vw,230px);margin-top:20px}
+@media(max-width:820px){.about{grid-template-columns:1fr}.about-r .row{grid-template-columns:1fr}}
+
+/* skills (red) */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,3vw,48px);margin-top:36px}
+.skills-grid h3{font-size:14px;text-transform:uppercase;font-weight:800;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:6px}
+.skills-grid li{list-style:none;display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid rgba(10,10,10,.35);font-weight:700;text-transform:uppercase;font-size:clamp(14px,1.5vw,20px);letter-spacing:-.02em;transition:padding .2s,background .2s}
+.skills-grid li:hover{padding-left:10px;background:var(--ink);color:var(--red)}
+.skills-grid li small{font-size:10px;font-weight:700;opacity:.7;align-self:center;white-space:nowrap}
+.note{margin-top:22px;font-size:12px;font-weight:700;text-transform:uppercase}
+@media(max-width:820px){.skills-grid{grid-template-columns:1fr}}
+
+/* projects (dark) */
+.proj-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,26px)}
+.card{background:var(--red);color:var(--ink);display:flex;flex-direction:column;transition:transform .25s}
+.card:hover{transform:translateY(-8px)}
+.card .art{background:var(--ink);aspect-ratio:16/10;display:grid;place-items:center;color:var(--red);overflow:hidden}
+.card .art svg{width:60%;height:auto}
+.card .in{padding:16px;display:grid;gap:10px;flex:1;align-content:start}
+.card h3{font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:-.03em;line-height:.95}
+.card p{font-size:12px;font-weight:600;text-transform:uppercase}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{border:1.5px solid var(--ink);padding:3px 7px;font-size:10px;font-weight:700;text-transform:uppercase}
+.status{display:inline-block;background:var(--ink);color:var(--red);padding:3px 8px;font-size:10px;font-weight:800;text-transform:uppercase;width:max-content}
+.status.done{background:var(--white);color:var(--ink)}
+.card .actions{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 16px}
+.card .btn{font-size:11px}
+.card .btn span{padding:9px 10px}
+.card .btn b{width:32px}
+@media(max-width:900px){.proj-grid{grid-template-columns:1fr}}
+
+/* modal */
+dialog{margin:auto;max-width:560px;width:calc(100% - 32px);background:var(--red);color:var(--ink);border:0;padding:24px}
+dialog::backdrop{background:rgba(0,0,0,.8)}
+dialog h3{font-size:30px;text-transform:uppercase;font-weight:800;letter-spacing:-.04em;margin-bottom:12px}
+dialog p{font-weight:600;text-transform:uppercase;font-size:13px;margin-bottom:10px}
+dialog .btn{margin-top:10px}
+
+/* education + journey */
+.timeline{margin-top:34px;display:grid;gap:0;border-left:2px solid var(--ink);margin-left:6px}
+.tl{padding:0 0 30px 26px;position:relative}
+.tl::before{content:"";position:absolute;left:-9px;top:4px;width:16px;height:16px;background:var(--ink)}
+.tl h3{font-size:clamp(20px,2.6vw,34px);text-transform:uppercase;font-weight:800;letter-spacing:-.03em}
+.tl p{font-weight:600;text-transform:uppercase;font-size:13px;margin-top:6px}
+.edit{background:rgba(10,10,10,.12);padding:0 4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px)}
+.check{list-style:none;margin-top:30px}
+.check li{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #3a0f0d;font-weight:700;text-transform:uppercase;font-size:clamp(14px,1.5vw,20px);letter-spacing:-.02em;cursor:pointer;color:var(--red)}
+.check input{appearance:none;width:22px;height:22px;border:2px solid var(--red);background:none;cursor:pointer;flex:none}
+.check input:checked{background:var(--red);box-shadow:inset 0 0 0 4px var(--black)}
+.check input:checked+span{text-decoration:line-through;opacity:.6}
+.bar{height:6px;background:#3a0f0d;margin-top:18px}
+.bar i{display:block;height:100%;width:0;background:var(--red);transition:width .3s}
+.empty{border:2px dashed var(--ink);padding:clamp(24px,5vw,60px);margin-top:30px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chips span{border:2px solid var(--ink);padding:6px 10px;font-weight:700;font-size:12px;text-transform:uppercase}
+@media(max-width:820px){.two{grid-template-columns:1fr}}
+
+/* resume */
+.resume{margin-top:30px;border:2px solid var(--red);padding:clamp(16px,3vw,36px);display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.resume h4{font-size:12px;text-transform:uppercase;font-weight:800;margin-bottom:6px;opacity:.7}
+.resume p,.resume li{font-weight:700;text-transform:uppercase;font-size:14px;list-style:none}
+@media(max-width:820px){.resume{grid-template-columns:1fr}}
+
+/* contact */
+.ready{display:flex;justify-content:flex-end}
+.ready .h-md{max-width:620px;color:var(--red)}
+.demo{background:var(--white);color:var(--ink);display:inline-block;font-size:11px;font-weight:800;text-transform:uppercase;padding:4px 8px;margin:24px 0 0}
+form{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,3vw,40px);margin-top:20px}
+.f{display:grid;gap:4px}
+.f.wide{grid-column:1/-1}
+.f label{font-size:12px;font-weight:800;text-transform:uppercase}
+.f input,.f textarea{background:none;border:0;border-bottom:2px solid var(--ink);font:inherit;font-weight:600;font-size:16px;padding:10px 0;color:var(--ink);border-radius:0;resize:vertical}
+.f input:focus,.f textarea:focus{outline:0;border-color:var(--white)}
+.err{font-size:11px;font-weight:800;text-transform:uppercase;color:var(--white);min-height:14px}
+#status{grid-column:1/-1;font-weight:800;text-transform:uppercase;font-size:13px}
+.links{display:flex;gap:20px;flex-wrap:wrap;margin-top:26px;font-weight:800;text-transform:uppercase;font-size:14px}
+.links a{border-bottom:2px solid var(--ink)}
+.links a:hover{background:var(--ink);color:var(--red)}
+@media(max-width:820px){form{grid-template-columns:1fr}}
+
+footer{background:var(--red);color:var(--ink);padding:0 var(--pad) var(--pad);overflow:hidden}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:2px solid var(--ink);padding-top:16px;font-weight:700;text-transform:uppercase;font-size:12px}
+.foot nav{display:flex;gap:14px;flex-wrap:wrap}
+footer .mega{margin-top:20px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#about">Skip to content</a>
+
+<header id="top" role="banner">
+  <a href="#home" class="logo" aria-label="Gokulprasath M, home">Gokulprasath M</a>
+  <button class="menu-btn" id="open" aria-haspopup="true" aria-controls="overlay" aria-expanded="false"><i></i>Menu</button>
+</header>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <button class="close" id="close">Close ✕</button>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#education">Education</a>
+  <a href="#achievements">Achievements</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<main>
+<!-- HERO -->
+<section id="home" class="red" data-theme="red">
+  <div>
+    <div class="hero-grid">
+      <div>
+        <!-- EDIT: replace src with your photo, e.g. images/gokul.jpg -->
+        <div class="photo">
+          <img id="photo" src="" alt="Portrait of Gokulprasath M" hidden onload="this.hidden=false;this.nextElementSibling.hidden=true">
+          <div class="ph">Add your photo<br>(set the src in the HTML)</div>
+        </div>
+        <p class="cap">Building skills in electronics and code.</p>
+      </div>
+      <div class="hero-copy">
+        <p class="label">2nd-year<br>ECE<br>student</p>
+        <div>
+          <h1 class="h-xl">Hi, I'm Gokulprasath M. Learning to build things that work.</h1>
+          <p class="body" style="margin-top:18px">ECE Student | Aspiring Technology Professional. Exploring electronics, programming and emerging technologies.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="#projects"><span>Explore my projects</span><b aria-hidden="true">↗</b></a>
+            <a class="btn" href="#resume" id="dl-hero"><span>Download resume</span><b aria-hidden="true">↓</b></a>
+            <a class="btn" href="#contact"><span>Contact me</span><b aria-hidden="true">↗</b></a>
+          </div>
+        </div>
+        <p class="label r">Open to<br>internships<br>and learning</p>
+      </div>
+    </div>
+  </div>
+  <div class="mega hero-mega" aria-hidden="true">Gokul</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="dark about" data-theme="dark">
+  <div>
+    <div class="stat rv"><div class="n">2nd</div><p class="label" style="margin-top:14px">Year of B.E. ECE</p></div>
+    <div class="stat rv" style="margin-top:30px"><div class="n">3</div><p class="label" style="margin-top:14px">Projects planned</p></div>
+  </div>
+  <div class="about-r rv">
+    <div class="row"><p class="label">About me</p>
+      <h2 class="h-md">Building a strong foundation in engineering, code and problem-solving.</h2></div>
+    <div class="row"><span></span>
+      <div>
+        <p class="body">I am a second-year Electronics and Communication Engineering student passionate about learning new technologies, solving problems and building practical projects. I am continuously improving my programming, electronics and communication skills to prepare for future career opportunities.</p>
+        <p class="body" style="margin-top:14px">"I believe consistent learning, practical experience, and learning from mistakes are essential for professional growth."</p>
+        <div class="cards">
+          <div><span class="label">Education</span><p>B.E. Electronics and Communication Engineering</p></div>
+          <div><span class="label">Current focus</span><p>Learning programming and technical concepts</p></div>
+          <div><span class="label">Strength</span><p>Perseverance and continuous learning</p></div>
+          <div><span class="label">Career objective</span><p>Prepare for internships and placements</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mega" aria-hidden="true">Gokul</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="red" data-theme="red">
+  <p class="label">Skills</p>
+  <h2 class="h-xl rv" style="margin-top:10px;max-width:1000px">Skills in progress. Always learning.</h2>
+  <div class="skills-grid rv">
+    <div><h3>Programming</h3><ul>
+      <li>C Programming <small>Learning</small></li><li>Python <small>Learning</small></li><li>Java <small>Learning</small></li>
+      <li>HTML <small>Learning</small></li><li>CSS <small>Learning</small></li><li>JavaScript <small>Learning</small></li></ul></div>
+    <div><h3>Electronics and engineering</h3><ul>
+      <li>Electronic Devices <small>Learning</small></li><li>Analog Electronics <small>Learning</small></li><li>Digital Electronics <small>Learning</small></li>
+      <li>Circuit Analysis <small>Learning</small></li><li>Microcontrollers <small>Learning</small></li><li>Embedded Systems <small>Learning</small></li></ul></div>
+    <div><h3>Professional</h3><ul>
+      <li>Communication <small>Developing</small></li><li>Problem-Solving <small>Developing</small></li><li>Teamwork <small>Developing</small></li>
+      <li>Adaptability <small>Developing</small></li><li>Continuous Learning <small>Developing</small></li></ul></div>
+  </div>
+  <p class="note">These are learning interests, not confirmed proficiency levels. Edit the list as you grow.</p>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="dark" data-theme="dark">
+  <div class="proj-head">
+    <h2 class="h-xl rv">My<br>projects</h2>
+    <p class="body" style="color:var(--red)">All three are planned ideas. Completed work will be marked clearly, with a GitHub link only when a real repository exists.</p>
+  </div>
+  <div class="proj-grid" id="projGrid"></div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="red" data-theme="red">
+  <p class="label">Education</p>
+  <h2 class="h-xl rv" style="margin-top:10px">Where I'm studying</h2>
+  <div class="timeline rv">
+    <div class="tl"><h3>B.E. Electronics and Communication Engineering</h3>
+      <p>Second year</p>
+      <p>College: <span class="edit">M. Kumarasamy College of Engineering (MKCE), Karur</span> (edit if needed)</p>
+      <p>Expected graduation: <span class="edit">[Add graduation year]</span></p></div>
+    <div class="tl"><h3>School education</h3>
+      <p>Completed</p>
+      <p>School: <span class="edit">[Add school name]</span></p>
+      <p>Qualification and year: <span class="edit">[Add details]</span></p></div>
+  </div>
+</section>
+
+<!-- LEARNING JOURNEY -->
+<section id="journey" class="dark" data-theme="dark">
+  <div class="two">
+    <div>
+      <p class="label">Learning journey</p>
+      <h2 class="h-xl rv" style="margin-top:10px">My learning journey</h2>
+      <p class="body" style="margin-top:18px">These are goals, not completed achievements. Tick them as you finish each one.</p>
+      <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
+      <p class="label" id="barlabel" style="margin-top:8px">0 of 6 done</p>
+    </div>
+    <ul class="check" id="goals">
+      <li><label style="display:flex;gap:12px;align-items:center;width:100%"><input type="checkbox"><span>Programming fundamentals</span></label></li>
+      <li><label style="display:flex;gap:12px;align-items:center;width:100%"><input type="checkbox"><span>Data structures and problem-solving</span></label></li>
+      <li><label style="display:flex;gap:12px;align-items:center;width:100%"><input type="checkbox"><span>Electronics and circuit design</span></label></li>
+      <li><label style="display:flex;gap:12px;align-items:center;width:100%"><input type="checkbox"><span>Embedded systems and microcontrollers</span></label></li>
+      <li><label style="display:flex;gap:12px;align-items:center;width:100%"><input type="checkbox"><span>Communication and interview preparation</span></label></li>
+      <li><label style="display:flex;gap:12px;align-items:center;width:100%"><input type="checkbox"><span>Personal and professional development</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="red" data-theme="red">
+  <p class="label">Achievements</p>
+  <h2 class="h-xl rv" style="margin-top:10px">Achievements and certifications</h2>
+  <div class="empty rv">
+    <p class="h-md">My journey is in progress. New achievements will be added here.</p>
+    <div class="chips"><span>Certifications</span><span>Workshops</span><span>Hackathons</span><span>Academic</span><span>Online courses</span><span>Internships</span></div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume" class="dark" data-theme="dark">
+  <div class="proj-head">
+    <h2 class="h-xl rv">Resume</h2>
+    <a class="btn light" href="#" id="dl"><span>Download resume (PDF)</span><b aria-hidden="true">↓</b></a>
+  </div>
+  <p class="label" id="dl-note"></p>
+  <div class="resume rv">
+    <div><h4>Career objective</h4><p>To prepare for internships and placements by building strong technical foundations and practical projects.</p></div>
+    <div><h4>Education</h4><p>B.E. ECE, second year<br><span class="edit" style="background:#3a0f0d">[College, graduation year]</span></p></div>
+    <div><h4>Technical skills (learning)</h4><p>C, Python, Java, HTML, CSS, JavaScript, digital and analog electronics, microcontrollers</p></div>
+    <div><h4>Projects</h4><p>Water level controller, smart parking system, environmental monitor (all planned)</p></div>
+    <div><h4>Certifications</h4><p><span class="edit" style="background:#3a0f0d">[Add when earned]</span></p></div>
+    <div><h4>Contact</h4><p><span class="edit" style="background:#3a0f0d">[Email] · [Phone] · [LinkedIn]</span></p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="red" data-theme="red">
+  <div class="ready"><h2 class="h-md" style="color:var(--ink)">Let's connect.<br>I'm always interested in learning, collaborating on projects and exploring new opportunities.</h2></div>
+  <span class="demo" id="demoTag">Demo form: messages are not sent until a backend is connected</span>
+  <form id="form" novalidate>
+    <div class="f"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required><span class="err" id="e-name"></span></div>
+    <div class="f"><label for="email">Your email</label><input id="email" name="email" type="email" autocomplete="email" required><span class="err" id="e-email"></span></div>
+    <div class="f"><label for="subject">Subject</label><input id="subject" name="subject" required><span class="err" id="e-subject"></span></div>
+    <div class="f wide"><label for="message">Your message</label><textarea id="message" name="message" rows="3" required></textarea><span class="err" id="e-message"></span></div>
+    <div><button class="btn" type="submit"><span>Send message</span><b aria-hidden="true">↗</b></button></div>
+    <p id="status" role="status" aria-live="polite"></p>
+  </form>
+  <div class="links">
+    <!-- EDIT these three links -->
+    <a href="mailto:your-email@example.com" id="l-mail">Email</a>
+    <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener" id="l-in">LinkedIn</a>
+    <a href="https://github.com/your-username" target="_blank" rel="noopener" id="l-gh">GitHub</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><b>Gokulprasath M</b><br>ECE Student | Aspiring Technology Professional</div>
+    <nav aria-label="Footer"><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#education">Education</a><a href="#contact">Contact</a></nav>
+    <div>Designed with curiosity and a passion for learning.<br>© <span id="yr"></span> Gokulprasath M</div>
+  </div>
+  <div class="mega" aria-hidden="true">Gokul</div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dlgT">
+  <h3 id="dlgT"></h3><p id="dlgD"></p><p id="dlgTech"></p><p id="dlgS"></p>
+  <button class="btn" id="dlgX"><span>Close</span><b aria-hidden="true">✕</b></button>
+</dialog>
+
+<script>
+/* ============ EDIT ME ============ */
+const CONFIG = {
+  resumeUrl: "",            // e.g. "resume.pdf" once you add a real file next to index.html
+  formEndpoint: ""          // e.g. a Formspree/Netlify endpoint; leave empty to keep the demo form
+};
+const PROJECTS = [
+  { title:"Automatic Water Level Controller",
+    desc:"A proposed electronics project to monitor water levels and control a pump automatically.",
+    tech:["Water-level sensors","Control circuitry","Optional microcontroller"],
+    status:"Planned", github:"", demo:"",
+    icon:'<path d="M12 3C8 9 6 12 6 15a6 6 0 0012 0c0-3-2-6-6-12z"/>' },
+  { title:"Smart Parking System",
+    desc:"A proposed system exploring vehicle movement and parking assistance using sensors and a microcontroller.",
+    tech:["Arduino or ESP32","Motor driver","Ultrasonic sensors"],
+    status:"Planned", github:"", demo:"",
+    icon:'<rect x="4" y="4" width="16" height="16"/><path d="M9 17V7h4a3 3 0 010 6H9"/>' },
+  { title:"Smart Environmental Monitoring System",
+    desc:"A proposed system for monitoring environmental parameters with sensors and displaying readings.",
+    tech:["Sensors","Microcontroller","Monitoring interface"],
+    status:"Planned", github:"", demo:"",
+    icon:'<path d="M3 12h4l3-8 4 16 3-8h4"/>' }
+];
+/* ================================== */
+
+const $=s=>document.querySelector(s);
+
+/* menu */
+const ov=$('#overlay'),op=$('#open');
+function setMenu(o){ov.classList.toggle('open',o);op.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';(o?$('#close'):op).focus()}
+op.onclick=()=>setMenu(true);$('#close').onclick=()=>setMenu(false);
+ov.querySelectorAll('a').forEach(a=>a.onclick=()=>setMenu(false));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ov.classList.contains('open'))setMenu(false)});
+
+/* header colour follows section */
+const header=$('header');
+function tint(){
+  const y=30;
+  for(const s of document.querySelectorAll('section[data-theme]')){
+    const r=s.getBoundingClientRect();
+    if(r.top<=y&&r.bottom>y){header.classList.toggle('on-dark',s.dataset.theme==='dark');return}
+  }
+}
+addEventListener('scroll',tint,{passive:true});tint();
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* projects */
+const grid=$('#projGrid'),dlg=$('#dlg');
+PROJECTS.forEach((p,i)=>{
+  const done=p.status.toLowerCase()==='completed';
+  const c=document.createElement('article');c.className='card';
+  c.innerHTML=`<div class="art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p.icon}</svg></div>
+  <div class="in"><span class="status ${done?'done':''}">${p.status}</span><h3></h3><p></p><div class="tags"></div></div>
+  <div class="actions"></div>`;
+  c.querySelector('h3').textContent=p.title;
+  c.querySelector('.in p').textContent=p.desc;
+  p.tech.forEach(t=>{const s=document.createElement('span');s.textContent=t;c.querySelector('.tags').appendChild(s)});
+  const act=c.querySelector('.actions');
+  const b=document.createElement('button');b.className='btn';b.innerHTML='<span>View details</span><b aria-hidden="true">↗</b>';
+  b.onclick=()=>{$('#dlgT').textContent=p.title;$('#dlgD').textContent=p.desc;$('#dlgTech').textContent='Technologies: '+p.tech.join(', ');
+    $('#dlgS').textContent='Status: '+p.status+(done?'':' (no results or code yet)');dlg.showModal()};
+  act.appendChild(b);
+  if(p.github){const g=document.createElement('a');g.className='btn';g.href=p.github;g.target='_blank';g.rel='noopener';g.innerHTML='<span>GitHub</span><b aria-hidden="true">↗</b>';act.appendChild(g)}
+  grid.appendChild(c);
+});
+$('#dlgX').onclick=()=>dlg.close();
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+
+/* learning checklist */
+const boxes=[...document.querySelectorAll('#goals input')];
+function prog(){const n=boxes.filter(b=>b.checked).length;$('#barfill').style.width=(n/boxes.length*100)+'%';$('#barlabel').textContent=n+' of '+boxes.length+' done'}
+boxes.forEach(b=>b.addEventListener('change',prog));
+
+/* resume buttons */
+function resumeClick(e){
+  if(!CONFIG.resumeUrl){e.preventDefault();$('#dl-note').textContent='Resume not added yet. Place a real PDF next to index.html and set CONFIG.resumeUrl.';
+    $('#resume').scrollIntoView({behavior:'smooth'});}
+}
+['#dl','#dl-hero'].forEach(s=>{const a=$(s);if(CONFIG.resumeUrl){a.href=CONFIG.resumeUrl;a.setAttribute('download','')}a.addEventListener('click',resumeClick)});
+
+/* contact form */
+if(CONFIG.formEndpoint)$('#demoTag').hidden=true;
+$('#form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const f=e.target,st=$('#status');let ok=true;
+  const rules={name:v=>v.trim()?'':'Please enter your name.',
+    email:v=>!v.trim()?'Please enter your email.':(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)?'':'Enter a valid email address.'),
+    subject:v=>v.trim()?'':'Please add a subject.',
+    message:v=>v.trim().length>=10?'':'Message should be at least 10 characters.'};
+  for(const k in rules){const m=rules[k](f[k].value);$('#e-'+k).textContent=m;f[k].setAttribute('aria-invalid',!!m);if(m)ok=false}
+  if(!ok){st.textContent='Please fix the highlighted fields.';return}
+  if(!CONFIG.formEndpoint){st.textContent='Demo only: no backend is connected, so nothing was sent. Use the email link below.';return}
+  try{
+    const r=await fetch(CONFIG.formEndpoint,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)});
+    if(r.ok){st.textContent='Message sent. Thank you!';f.reset()}else throw 0;
+  }catch{st.textContent='Could not send. Please try again or use the email link.'}
+});
+
+$('#yr').textContent=new Date().getFullYear();
+/* photo: show only if src is set */
+const ph=$('#photo');if(ph.getAttribute('src'))ph.hidden=false;
+</script>
+</body>
+</html>
